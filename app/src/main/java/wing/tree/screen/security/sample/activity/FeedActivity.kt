@@ -1,6 +1,8 @@
 package wing.tree.screen.security.sample.activity
 
+import android.Manifest.permission.POST_NOTIFICATIONS
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -23,6 +25,7 @@ import wing.tree.screen.security.sample.model.Feed
 import wing.tree.screen.security.sample.model.Feed.Companion.EXTRA_NICKNAME
 import wing.tree.screen.security.sample.model.Image
 import wing.tree.screen.security.sample.ui.theme.ScreenSecuritySampleTheme
+import kotlin.random.Random
 
 class FeedActivity : ComponentActivity() {
     private val items = listOf(
@@ -32,6 +35,10 @@ class FeedActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestPermissions(arrayOf(POST_NOTIFICATIONS), Random.nextInt())
+        }
 
         setContent {
             ScreenSecuritySampleTheme {
