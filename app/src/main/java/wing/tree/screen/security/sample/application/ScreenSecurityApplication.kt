@@ -7,6 +7,7 @@ import android.app.Application.ActivityLifecycleCallbacks
 import android.graphics.PixelFormat
 import android.view.WindowManager
 import android.widget.FrameLayout
+import timber.log.Timber
 import wing.tree.screen.security.sample.annotation.ScreenSecurity
 import wing.tree.screen.security.sample.annotation.isNotAnnotationPresent
 import wing.tree.screen.security.sample.manager.ScreenSecurityManager
@@ -21,6 +22,7 @@ class ScreenSecurityApplication : Application(),
     override fun onCreate() {
         super.onCreate()
 
+        Timber.plant(Timber.DebugTree())
         registerActivityLifecycleCallbacks(this)
     }
 
@@ -69,7 +71,7 @@ class ScreenSecurityApplication : Application(),
                     try {
                         windowManager.removeViewImmediate(it)
                     } catch (illegalArgumentException: IllegalArgumentException) {
-
+                        Timber.e(illegalArgumentException)
                     }
                 }
             }
