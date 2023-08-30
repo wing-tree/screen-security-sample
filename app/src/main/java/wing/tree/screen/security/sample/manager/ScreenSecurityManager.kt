@@ -1,7 +1,6 @@
 package wing.tree.screen.security.sample.manager
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import wing.tree.screen.security.sample.activity.ScreenSecurityActivity
 import java.util.Timer
@@ -42,7 +41,7 @@ class ScreenSecurityManager private constructor() {
     private fun Activity.launchScreenSecurityActivity() {
         val intent = Intent(this, ScreenSecurityActivity::class.java).apply {
             flags = //Intent.FLAG_ACTIVITY_NEW_TASK or
-                    Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
+                Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
         }
 
         startActivity(intent)
